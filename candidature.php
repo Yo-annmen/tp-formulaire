@@ -14,7 +14,11 @@ $erreurs   = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $prenom     = $_POST['prenom']     ?? '';
-@@ -20,88 +22,117 @@
+    $nom        = $_POST['nom']        ?? '';
+    $email      = $_POST['email']      ?? '';
+    $age        = $_POST['age']        ?? '';
+    $filiere    = $_POST['filiere']    ?? '';
+    $motivation = $_POST['motivation'] ?? '';
 
 
     $reglement = isset($_POST['reglement']); 
@@ -22,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($prenom)) {
         $erreurs[] = "Le prénom est obligatoire.";
     }
- 
+
     if (empty($nom)) {
         $erreurs[] = "Le nom est obligatoire.";
     }
@@ -65,6 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <div>
+        
+        <?php if (!empty($erreurs)): ?>
+            <ul class="erreurs">
+                <?php foreach ($erreurs as $e): ?>
+                    <li><?php echo $e; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+ 
+    
 
         <form action="candidature.php" method="POST">
 
@@ -131,4 +145,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
 </body>
-</html>
